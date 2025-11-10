@@ -2,6 +2,7 @@ site_name: Tecnologias Web
 site_description: Documentación del curso de Tecnologias Web
 nav:
   - Index : index.md
+  - Contenido : contenido.md
 
   - Arquitectura de Software : arquitectura.md
 
