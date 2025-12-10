@@ -38,6 +38,10 @@ De la misma forma, un contenedor de Docker se puede mover entre tu laptop, la nu
 
 ---
 
+Aprender Docker bien no se trata de memorizar comandos, sino de entender una mentalidad: aislar, reproducir y escalar aplicaciones de forma predecible.
+
+Y tú, con tu perfil (académico, trabajando en grupo, con interés práctico y experiencia previa en limitaciones técnicas), tienes el contexto perfecto para sacarle máximo provecho.
+
 ## 🚀 **Próximos pasos**
 
 En los siguientes capítulos aprenderás:
@@ -51,41 +55,96 @@ En los siguientes capítulos aprenderás:
 
 
 ???+ info "Introducción a Docker"
-    === "Contenedores"
+    === "Conceptos"
 
         **¿Qué es un contenedor? ¿Y en qué se diferencia de una Máquina Virtual?**
 
-        🔹 **Contenedor**
-
+        === "**Contenedor**"
+         
             Es una unidad ligera y aislada de software que empaqueta una aplicación junto con todas sus dependencias (librerías, binarios, archivos de configuración) sobre el mismo kernel del sistema operativo host.
-            
+
+            ![contenedor](https://www.prored.es/wp-content/uploads/2019/01/prored-esquema-arquitectura-contenedor-software.png)
+                
+                        
             Ejecuta procesos de forma aislada, pero comparte el kernel del sistema anfitrión.
 
-           -  Características clave:
+            🔹 **Características clave:**
+                        
+             - ⚡**Ligero:** Inicia en segundos.
 
-                ⚡ Ligero: Inicia en segundos.
-                📦 Portátil: Funciona igual en desarrollo, pruebas y producción.
-                🧱 Aislamiento de procesos y filesystem (mediante namespaces y cgroups en Linux).
-                📉 Bajo overhead: Consume pocos recursos adicionales.
+             - 📦 **Portátil:** Funciona igual en desarrollo, pruebas y producción.
+
+             - 🧱 **Aislamiento**  de procesos y filesystem (mediante namespaces y cgroups en Linux).
+                
+             - 📉 **Bajo overhead:** Consume pocos recursos adicionales.
+
         
-        💻 **Máquina Virtual (VM)**
+        === "💻**Máquina Virtual (VM)**"
 
-            Una máquina virtual es un entorno completamente aislado que simula un hardware físico completo (CPU, memoria, disco, red), 
-            
-            y ejecuta un sistema operativo invitado completo sobre un hipervisor.
+            Una máquina virtual es un entorno completamente aislado que simula un hardware físico completo (CPU, memoria, disco, red), y ejecuta un sistema operativo invitado completo sobre un hipervisor.
 
-            ✅ Características clave:
+            ![Maquina Virtual](https://www.ufsexplorer.com/es/img/articles/vmdo/virtual-machine-basics.jpg)
+
+        
+            🔹 ✅ Características clave:
 
             🛡️ Aislamiento fuerte (nivel de hardware).
             🖥️ Cada VM tiene su propio kernel y sistema operativo.
             ⏳ Arranque lento (decenas de segundos o minutos).
             📦 Alto consumo de CPU, RAM y almacenamiento.
+                
+
+        === "Contenedor Vs Maquina Virtual"
+           
+            ### 🔹 Contenedor vs. Máquina Virtual (VM)
+
+            # 🐳 ¿Contenedor o Máquina Virtual?  
+            ## La diferencia que salva tus noches antes de la entrega
+
+            Imagina esto:
+            > Estás trabajando en un proyecto grupal.  
+            > Tu código funciona **perfecto** en tu laptop.  
+            > Lo pasas a tu compañero… y dice:  
+            > ❌ *“No me corre.”*  
+            > ❌ *“Me falta una librería.”*  
+            > ❌ *“¿Tú usas Windows? Yo, Linux… ah, sí, por eso.”*  
+
+            **contenedores** y **máquinas virtuales (VMs)** son dos formas de resolver *exactamente ese problema*.  
+            Pero lo hacen de maneras muy distintas… y una es mucho más ligera, rápida y amigable para estudiantes 🎓.
+
+            Vamos a compararlas como si fueran *alojamientos* —porque al final, ambas “alojan” tu aplicación.
+            ---
+            ## 🏠 Analogía: ¿Departamento completo o cuarto en una casa compartida?
+
+            | | **Máquina Virtual (VM)** | **Contenedor (ej: Docker)** |
+            |---|--------------------------|-----------------------------|
+            | 🏢 **Qué es** | Como alquilar un **departamento completo**: trae cocina, baño, calefacción, electricidad… ¡todo incluido! | Como alquilar un **cuarto amueblado** en una casa compartida: tienes tu espacio privado, pero compartes la cocina, el agua y la electricidad con los demás. |
+            | 💻 **Qué incluye** | Un **sistema operativo completo** (Windows, Linux, etc.) + tu app + sus dependencias. | Solo tu **app y sus dependencias**… y usa el sistema operativo de la computadora *anfitriona*. |
+            | ⏱️ **Velocidad** | Arranca en **segundos… o minutos** (como encender una laptop desde cero). | Arranca en **milisegundos** (como abrir una app en tu teléfono). |
+            | 📦 **Tamaño** | Gigas (GB). Ej: una VM de Ubuntu pesa ~2–5 GB. | Megabytes (MB). Ej: una app web con Nginx: ~150 MB. |
+            | 🔌 **Recursos** | Usa mucha RAM y CPU… aunque esté "en reposo". | Usa solo lo que necesita *en ese momento*. |
+            | 🧪 **Ideal para…** | - Probar otro sistema operativo (ej: Windows en Mac)<br>- Aplicaciones legacy que necesitan un SO específico | - Desarrollo web/APIs<br>- Proyectos grupales<br>- Cualquier app moderna que quieras que *funcione igual en todas partes* |
+
+            ---
+
+            ## 💡 En una frase (para tu cuaderno mental):
+
+            > 🔹 **VM = Simular una computadora entera.**  
+            > 🔹 **Contenedor = Empaquetar tu app como un “USB ejecutable” que corre en cualquier lugar.**
+
+            ---
+
+            ## 🎯 ¿Por qué esto importa para ti como estudiante?
+
+            - ✅ Con **contenedores**, evitas la excusa de *“funciona en mi máquina”*.  
+            - ✅ Tu grupo puede empezar en minutos: `git clone` + `docker-compose up` → ¡listo!  
+            - ✅ No necesitas una laptop potente: Docker corre incluso en una Raspberry Pi.  
+            - ✅ Es lo que usan empresas como Netflix, Spotify y Mercado Libre… así que **aprenderlo te da ventaja** en pasantías y trabajos.
+
         
-        - Problemas de los silos entre desarrollo y operaciones.
             <iframe width="560" height="315" src="https://www.youtube.com/embed/tcTPRuUBQ4g?si=4OIyrE9Hpg-5qS7B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             ![Docker](https://www.youtube.com/watch?v=n32vN84KXJ8)
-            https://www.youtube.com/watch?v=tcTPRuUBQ4g
-    
+           
     === "Imagenes"
         **Imágenes (Images)**
            
@@ -211,34 +270,18 @@ En los siguientes capítulos aprenderás:
         ✅ Ventaja: resolución DNS integrada — no necesitas IPs fijas.
 
 
-## 🐳 ¿Qué es Docker?
+    ==="## 🐳 ¿Qué es Docker?"
 
-**Docker** es una plataforma que te permite empaquetar tu aplicación con todo lo que necesita para funcionar (código, librerías, configuraciones) en una caja ligera llamada **contenedor**.
+        **Docker** es una plataforma que te permite empaquetar tu aplicación con todo lo que necesita para funcionar (código, librerías, configuraciones) en una caja ligera llamada **contenedor**.
 
-✅ Funciona igual en tu laptop, en la de tu compañero, en la nube…  
-✅ Arranca en segundos  
-✅ No afecta el resto de tu sistema  
+        ✅ Funciona igual en tu laptop, en la de tu compañero, en la nube…  
+        ✅ Arranca en segundos  
+        ✅ No afecta el resto de tu sistema  
 
-> 📦 Piensa en Docker como un *"USB ejecutable"* de tu app.
+        > 📦 Piensa en Docker como un *"USB ejecutable"* de tu app.
 
----
+        ---
 
-### 🔹 Contenedor vs. Máquina Virtual (VM)
+        
 
-| Característica          | Contenedor                          | Máquina Virtual (VM)               |
-|-------------------------|-------------------------------------|------------------------------------|
-| **Nivel de aislamiento** | A nivel de proceso/filesystem       | A nivel de hardware                |
-| **Kernel**              | Comparte el del host                | Tiene su propio kernel             |
-| **Tamaño**              | MBs (ej: `nginx`: ~150 MB)          | GBs (ej: Ubuntu ISO: ~2–4 GB)      |
-| **Arranque**            | Milisegundos a segundos             | Segundos a minutos                 |
-| **Overhead**            | Muy bajo                            | Alto (CPU, RAM, disco)             |
 
-> 💡 **Analogía**:  
-> - Una **VM** es como alquilar un *departamento completo* (con cocina, baño, etc.).  
-> - Un **contenedor** es como alquilar un *cuarto amueblado* en una casa compartida.
-
----
-
-## 🏗️ Arquitectura y componentes de Docker
-
-Docker funciona con una arquitectura **cliente-servidor**:
