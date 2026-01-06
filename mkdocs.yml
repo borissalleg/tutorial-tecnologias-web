@@ -7,6 +7,8 @@ nav:
   - Arquitectura de Software : arquitectura.md
   - DevOps : devops.md
   - Docker : docker.md
+  - Redes : redes.md
+  - Docker Compose : dockercompose.md
 
 
 
