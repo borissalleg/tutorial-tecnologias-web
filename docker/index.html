@@ -1,0 +1,1574 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación del curso de Tecnologias Web">
+      
+      
+      
+      
+        <link rel="prev" href="../devops/">
+      
+      
+        <link rel="next" href="../redes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Docker - Tecnologias Web</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/styles.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduccion-a-docker" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Tecnologias Web" class="md-header__button md-logo" aria-label="Tecnologias Web" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Tecnologias Web
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Tecnologias Web" class="md-nav__button md-logo" aria-label="Tecnologias Web" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Tecnologias Web
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contenido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contenido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura de Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 ¿Qué es Docker?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imagenes-contenedores-volumenes-y-redes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Imágenes, contenedores, volúmenes y redes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-aprender-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌟 ¿Por qué aprender Docker?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Próximos pasos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listo-para-empaquetar-como-un-pro-sigamos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Listo para empaquetar como un pro? ¡Sigamos! 👇
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 Listo para empaquetar como un pro? ¡Sigamos! 👇">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenedor-vs-maquina-virtual-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Contenedor vs. Máquina Virtual (VM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dockercompose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 ¿Qué es Docker?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imagenes-contenedores-volumenes-y-redes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Imágenes, contenedores, volúmenes y redes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-aprender-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌟 ¿Por qué aprender Docker?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Próximos pasos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listo-para-empaquetar-como-un-pro-sigamos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Listo para empaquetar como un pro? ¡Sigamos! 👇
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 Listo para empaquetar como un pro? ¡Sigamos! 👇">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenedor-vs-maquina-virtual-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Contenedor vs. Máquina Virtual (VM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="introduccion-a-docker">🐳 <strong>Introducción a Docker</strong></h1>
+<p><strong>Empaqueta tu código y olvídate de los "¡En mi máquina sí funciona!"</strong></p>
+<blockquote>
+<p><em>Tutorial educativo para principiantes — sin conocimientos previos necesarios.</em></p>
+</blockquote>
+<hr />
+<h2 id="que-es-docker">🤔 <strong>¿Qué es Docker?</strong></h2>
+<p>Imagina que estás desarrollando una aplicación: una página web, un bot de Telegram, un script de análisis de datos… Todo va bien <em>en tu computadora</em>. Pero cuando le pasas el código a un compañero, o intentas subirlo a un servidor… ¡falla! 😩<br />
+¿Por qué? Porque tu computadora y la de los demás tienen distintas versiones de programas, librerías o configuraciones.</p>
+<h2 id="imagenes-contenedores-volumenes-y-redes">📦 Imágenes, contenedores, volúmenes y redes</h2>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>¿Qué es?</th>
+<th>Analogía 🍕</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Imagen</strong></td>
+<td>Plantilla <em>solo lectura</em> (como una receta de pizza)</td>
+<td>📜 <em>"Masa + salsa + queso + pepperoni"</em></td>
+</tr>
+<tr>
+<td><strong>Contenedor</strong></td>
+<td>Instancia <em>en ejecución</em> de una imagen (la pizza horneada y lista para comer)</td>
+<td>🍕 <em>"Tu pizza personal, recién salida del horno"</em></td>
+</tr>
+<tr>
+<td><strong>Volumen</strong></td>
+<td>Carpeta <em>persistente</em> para guardar datos (ej: base de datos)</td>
+<td>🥡 <em>"Caja para llevar: los datos sobreviven aunque apagues el horno"</em></td>
+</tr>
+<tr>
+<td><strong>Red</strong></td>
+<td>Permite que contenedores se hablen entre sí (o con el exterior)</td>
+<td>📡 <em>"WiFi del restaurante: tu pizza (contenedor) puede pedir más queso a la cocina (base de datos)"</em></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<details class="info" open="open">
+<summary>Introducción a Docker</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Conceptos</label><label for="__tabbed_1_2">Imagenes</label><label for="__tabbed_1_3">Contenedores1</label><label for="__tabbed_1_4">Volumenes</label><label for="__tabbed_1_5">Redes</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>🐳 ¿Qué es Docker?"</p>
+<p><strong>Docker</strong> es una plataforma que te permite empaquetar tu aplicación con todo lo que necesita para funcionar (código, librerías, configuraciones) en una caja ligera llamada <strong>contenedor</strong>.</p>
+<p>✅ Funciona igual en tu laptop, en la de tu compañero, en la nube…<br />
+✅ Arranca en segundos<br />
+✅ No afecta el resto de tu sistema  </p>
+<blockquote>
+<p>📦 Piensa en Docker como un <em>"USB ejecutable"</em> de tu app.</p>
+</blockquote>
+<p>👉 <strong>Docker resuelve este problema.</strong></p>
+<p>Docker es una herramienta que te permite <strong>empaquetar una aplicación junto con todo lo que necesita para ejecutarse</strong>:  </p>
+<div class="language-text highlight"><pre><span></span><code>    - Tu código  
+    - El lenguaje de programación (por ejemplo, Python 3.11)  
+    - Las librerías y dependencias  
+    - Archivos de configuración  
+    - Incluso partes del sistema operativo que necesita
+</code></pre></div>
+<p>Todo esto se guarda en algo llamado un <strong>contenedor</strong>, que es como una <em>caja sellada y portable</em> que funciona <strong>exactamente igual</strong> en cualquier lugar que tenga Docker instalado.</p>
+<p>📦 Piensa en Docker como las <strong>cajas de envío estandarizadas</strong> que usan los barcos:<br />
+No importa qué contengan (muebles, frutas, motores), todas tienen el mismo tamaño y se manejan igual.<br />
+De la misma forma, un contenedor de Docker se puede mover entre tu laptop, la nube, un servidor… ¡y seguirá funcionando sin cambios!</p>
+<hr />
+<h2 id="por-que-aprender-docker">🌟 <strong>¿Por qué aprender Docker?</strong></h2>
+<div class="language-text highlight"><pre><span></span><code>    ✅ Evita el famoso: *&quot;¡En mi máquina sí funciona!&quot;*  
+    ✅ Facilita el trabajo en equipo y la entrega de proyectos  
+    ✅ Es usado en la industria por empresas como Netflix, Spotify, Google…  
+    ✅ Te prepara para entornos modernos: desarrollo en la nube, microservicios, CI/CD
+</code></pre></div>
+<hr />
+<p>Aprender Docker bien no se trata de memorizar comandos, sino de entender una mentalidad: aislar, reproducir y escalar aplicaciones de forma predecible.</p>
+<p>Y tú, con tu perfil (académico, trabajando en grupo, con interés práctico y experiencia previa en limitaciones técnicas), tienes el contexto perfecto para sacarle máximo provecho.</p>
+<h2 id="proximos-pasos">🚀 <strong>Próximos pasos</strong></h2>
+<p>En los siguientes capítulos aprenderás:</p>
+<ol>
+<li>Cómo <strong>instalar Docker</strong> (según tu sistema operativo)  </li>
+<li>Los conceptos clave: <em>imágenes</em>, <em>contenedores</em>, <em>Dockerfile</em> y <em>Docker Hub</em>  </li>
+<li>A crear tu primer contenedor con una app sencilla (¡Hola Mundo con Python o Node.js!)  </li>
+<li>Consejos comunes y errores frecuentes (y cómo solucionarlos 😊)</li>
+</ol>
+<h2 id="listo-para-empaquetar-como-un-pro-sigamos">📌 <em>Listo para empaquetar como un pro? ¡Sigamos!</em> 👇</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1"><strong>Contenedor</strong></label><label for="__tabbed_2_2">💻<strong>Máquina Virtual (VM)</strong></label><label for="__tabbed_2_3">Contenedor Vs Maquina Virtual</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Es una unidad ligera y aislada de software que empaqueta una aplicación junto con todas sus dependencias (librerías, binarios, archivos de configuración) sobre el mismo kernel del sistema operativo host.</p>
+<p><img alt="contenedor" src="https://www.prored.es/wp-content/uploads/2019/01/prored-esquema-arquitectura-contenedor-software.png" /></p>
+<p>Ejecuta procesos de forma aislada, pero comparte el kernel del sistema anfitrión.</p>
+<p>🔹 <strong>Características clave:</strong></p>
+<ul>
+<li>
+<p>⚡<strong>Ligero:</strong> Inicia en segundos.</p>
+</li>
+<li>
+<p>📦 <strong>Portátil:</strong> Funciona igual en desarrollo, pruebas y producción.</p>
+</li>
+<li>
+<p>🧱 <strong>Aislamiento</strong>  de procesos y filesystem (mediante namespaces y cgroups en Linux).</p>
+</li>
+<li>
+<p>📉 <strong>Bajo overhead:</strong> Consume pocos recursos adicionales.</p>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Una máquina virtual es un entorno completamente aislado que simula un hardware físico completo (CPU, memoria, disco, red), y ejecuta un sistema operativo invitado completo sobre un hipervisor.</p>
+<p><img alt="Maquina Virtual" src="https://www.ufsexplorer.com/es/img/articles/vmdo/virtual-machine-basics.jpg" /></p>
+<p>🔹 ✅ Características clave:</p>
+<p>🛡️ Aislamiento fuerte (nivel de hardware).
+🖥️ Cada VM tiene su propio kernel y sistema operativo.
+⏳ Arranque lento (decenas de segundos o minutos).
+📦 Alto consumo de CPU, RAM y almacenamiento.</p>
+</div>
+<div class="tabbed-block">
+<h3 id="contenedor-vs-maquina-virtual-vm">🔹 Contenedor vs. Máquina Virtual (VM)</h3>
+<h1 id="contenedor-o-maquina-virtual">🐳 ¿Contenedor o Máquina Virtual?</h1>
+<h2 id="la-diferencia-que-salva-tus-noches-antes-de-la-entrega">La diferencia que salva tus noches antes de la entrega</h2>
+<p>Imagina esto:</p>
+<blockquote>
+<p>Estás trabajando en un proyecto grupal.<br />
+Tu código funciona <strong>perfecto</strong> en tu laptop.<br />
+Lo pasas a tu compañero… y dice:<br />
+❌ <em>“No me corre.”</em><br />
+❌ <em>“Me falta una librería.”</em><br />
+❌ <em>“¿Tú usas Windows? Yo, Linux… ah, sí, por eso.”</em>  </p>
+</blockquote>
+<p><strong>contenedores</strong> y <strong>máquinas virtuales (VMs)</strong> son dos formas de resolver <em>exactamente ese problema</em>.<br />
+Pero lo hacen de maneras muy distintas… y una es mucho más ligera, rápida y amigable para estudiantes 🎓.</p>
+<h2 id="vamos-a-compararlas-como-si-fueran-alojamientos-porque-al-final-ambas-alojan-tu-aplicacion">Vamos a compararlas como si fueran <em>alojamientos</em> —porque al final, ambas “alojan” tu aplicación.</h2>
+<h2 id="analogia-departamento-completo-o-cuarto-en-una-casa-compartida">🏠 Analogía: ¿Departamento completo o cuarto en una casa compartida?</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Máquina Virtual (VM)</strong></th>
+<th><strong>Contenedor (ej: Docker)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🏢 <strong>Qué es</strong></td>
+<td>Como alquilar un <strong>departamento completo</strong>: trae cocina, baño, calefacción, electricidad… ¡todo incluido!</td>
+<td>Como alquilar un <strong>cuarto amueblado</strong> en una casa compartida: tienes tu espacio privado, pero compartes la cocina, el agua y la electricidad con los demás.</td>
+</tr>
+<tr>
+<td>💻 <strong>Qué incluye</strong></td>
+<td>Un <strong>sistema operativo completo</strong> (Windows, Linux, etc.) + tu app + sus dependencias.</td>
+<td>Solo tu <strong>app y sus dependencias</strong>… y usa el sistema operativo de la computadora <em>anfitriona</em>.</td>
+</tr>
+<tr>
+<td>⏱️ <strong>Velocidad</strong></td>
+<td>Arranca en <strong>segundos… o minutos</strong> (como encender una laptop desde cero).</td>
+<td>Arranca en <strong>milisegundos</strong> (como abrir una app en tu teléfono).</td>
+</tr>
+<tr>
+<td>📦 <strong>Tamaño</strong></td>
+<td>Gigas (GB). Ej: una VM de Ubuntu pesa ~2–5 GB.</td>
+<td>Megabytes (MB). Ej: una app web con Nginx: ~150 MB.</td>
+</tr>
+<tr>
+<td>🔌 <strong>Recursos</strong></td>
+<td>Usa mucha RAM y CPU… aunque esté "en reposo".</td>
+<td>Usa solo lo que necesita <em>en ese momento</em>.</td>
+</tr>
+<tr>
+<td>🧪 <strong>Ideal para…</strong></td>
+<td>- Probar otro sistema operativo (ej: Windows en Mac)<br>- Aplicaciones legacy que necesitan un SO específico</td>
+<td>- Desarrollo web/APIs<br>- Proyectos grupales<br>- Cualquier app moderna que quieras que <em>funcione igual en todas partes</em></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/tcTPRuUBQ4g?si=4OIyrE9Hpg-5qS7B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<h2 id="en-una-frase-para-tu-cuaderno-mental">💡 En una frase (para tu cuaderno mental):</h2>
+<blockquote>
+<p>🔹 <strong>VM = Simular una computadora entera.</strong><br />
+🔹 <strong>Contenedor = Empaquetar tu app como un “USB ejecutable” que corre en cualquier lugar.</strong></p>
+</blockquote>
+<hr />
+<h2 id="por-que-esto-importa-para-ti-como-estudiante">🎯 ¿Por qué esto importa para ti como estudiante?</h2>
+<ul>
+<li>✅ Con <strong>contenedores</strong>, evitas la excusa de <em>“funciona en mi máquina”</em>.  </li>
+<li>✅ Tu grupo puede empezar en minutos: <code>git clone</code> + <code>docker-compose up</code> → ¡listo!  </li>
+<li>✅ No necesitas una laptop potente: Docker corre incluso en una Raspberry Pi.  </li>
+<li>✅ Es lo que usan empresas como Netflix, Spotify y Mercado Libre… así que <strong>aprenderlo te da ventaja</strong> en pasantías y trabajos.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Imágenes (Images)</label><label for="__tabbed_3_2">Comandos Comunes</label><label for="__tabbed_3_3">Cómo se construye una imagen</label><label for="__tabbed_3_4">Como subir imagen a DockerHUB</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Una imagen es una plantilla solo lectura que define cómo será un contenedor. Incluye:</p>
+<div class="language-text highlight"><pre><span></span><code>✅ Sistema de archivos mínimo (ej: alpine, ubuntu)
+
+✅ Código de la aplicación
+
+✅ Dependencias (librerías, binarios)
+
+✅ Metadatos (variables de entorno, comandos de inicio)
+</code></pre></div>
+<p>🔍 Características</p>
+<div class="language-text highlight"><pre><span></span><code>✅ Inmutables: una vez creada, no cambia.
+
+🧱 Compuesta por capas (cada instrucción en el Dockerfile crea una capa).
+
+🏷️ Identificada por un nombre y una etiqueta (ej: nginx:1.25-alpine).
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Tipos de imágenes</label><label for="__tabbed_4_2">¿Cómo están construidas?</label><label for="__tabbed_4_3">¿Donde conseguirlas?</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Ejemplo</th>
+<th>Pros</th>
+<th>Contras</th>
+<th>Recomendado para</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oficial</strong></td>
+<td><code>nginx</code>, <code>redis</code>, <code>postgres</code></td>
+<td>✅ Seguras, bien mantenidas, documentadas</td>
+<td>⚠️ Pueden ser grandes</td>
+<td>Producción, aprendizaje</td>
+</tr>
+<tr>
+<td><strong>Slim / Alpine</strong></td>
+<td><code>python:3.11-slim</code>, <code>node:18-alpine</code></td>
+<td>✅ Más pequeñas, menos vulnerabilidades</td>
+<td>⚠️ Alpine usa <code>musl</code> (no <code>glibc</code>) → puede romper algunas apps</td>
+<td>Producción, CI/CD</td>
+</tr>
+<tr>
+<td><strong>Distroless</strong></td>
+<td><code>gcr.io/distroless/python3</code></td>
+<td>✅ Mínimas (solo runtime + app), muy seguras</td>
+<td>❌ Sin shell → difícil debuggear</td>
+<td>Alta seguridad (ej: bancos)</td>
+</tr>
+<tr>
+<td><strong>Multi-arquitectura</strong></td>
+<td><code>--platform linux/arm64</code></td>
+<td>✅ Funcionan en Mac M1/M2, Raspberry Pi</td>
+<td>—</td>
+<td>Desarrollo en equipos con hardware mixto</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>Regla práctica para estudiantes</strong>:<br />
+Usa <code>alpine</code> o <code>slim</code> siempre que puedas.<br />
+Ej: <code>python:3.11-slim</code>, no <code>python:3.11</code>.</p>
+</blockquote>
+<hr />
+</div>
+<div class="tabbed-block">
+<p>Las imágenes se arman como una <strong>torta de capas</strong> 🎂:</p>
+<div class="language-text highlight"><pre><span></span><code>[ Capa 5: CMD [&quot;node&quot;, &quot;app.js&quot;] ] ← Solo lectura (metadatos)
+
+[ Capa 4: COPY . /app ]
+
+[ Capa 3: RUN npm install ]
+
+[ Capa 2: RUN apt-get install -y nodejs ]
+
+[ Capa 1: FROM node:18-slim ] ← Capa base (SO mínimo)
+</code></pre></div>
+<h3 id="ventajas-de-las-capas">✅ Ventajas de las capas:</h3>
+<ul>
+<li><strong>Reutilización</strong>: si <code>node:18-slim</code> ya está descargada, no se vuelve a bajar.  </li>
+<li><strong>Caché inteligente</strong>: si solo cambias tu código (capa 4), Docker reusa las capas 1–3 → ¡construcción más rápida!  </li>
+<li><strong>Eficiencia en espacio</strong>: 10 imágenes basadas en <code>alpine</code> comparten la misma capa base.</li>
+</ul>
+<blockquote>
+<p>🛠️ Ver capas de una imagen:<br />
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span><span class="nb">history</span><span class="w"> </span>nginx:alpine
+</span></code></pre></div></p>
+</blockquote>
+<hr />
+<blockquote>
+<p>🛠️ Construir  una imagen:</p>
+<p>```bash</p>
+<p>docker build -t mi-app:1.0 .</p>
+<h1 id="el-significa-usa-el-dockerfile-en-este-directorio">El <code>.</code> significa: "usa el Dockerfile en este directorio"</h1>
+<p>```</p>
+</blockquote>
+<hr />
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Fuente</th>
+<th>Cómo acceder</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Docker Hub</strong> (registro público)</td>
+<td><code>docker pull NOMBRE</code></td>
+<td><code>docker pull redis:7-alpine</code></td>
+</tr>
+<tr>
+<td><strong>Tu propio registro</strong> (privado)</td>
+<td><code>docker pull mi-registro/imagen:tag</code></td>
+<td><code>docker pull registry.gitlab.com/mi-proyecto/backend:latest</code></td>
+</tr>
+<tr>
+<td><strong>Construidas localmente</strong></td>
+<td><code>docker build -t nombre .</code></td>
+<td><code>docker build -t mi-app:dev .</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📌 Por defecto, <code>docker run nginx</code> hace:<br />
+1. Busca <code>nginx</code> localmente<br />
+2. Si no está → <code>docker pull nginx</code> implícito<br />
+3. Luego <code>docker run</code> con esa imagen</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Comandos esenciales para imágenes</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker images</code></td>
+<td>Lista imágenes locales</td>
+<td><code>docker images</code></td>
+</tr>
+<tr>
+<td><code>docker pull IMAGEN[:TAG]</code></td>
+<td>Descarga una imagen</td>
+<td><code>docker pull postgres:15</code></td>
+</tr>
+<tr>
+<td><code>docker build -t NOMBRE .</code></td>
+<td>Construye una imagen desde <code>Dockerfile</code></td>
+<td><code>docker build -t api-users .</code></td>
+</tr>
+<tr>
+<td><code>docker tag IMAGEN NUEVO_NOMBRE</code></td>
+<td>Renombra/etiqueta una imagen</td>
+<td><code>docker tag api-users mi-registro/api:1.0</code></td>
+</tr>
+<tr>
+<td><code>docker rmi IMAGEN</code></td>
+<td>Elimina una imagen</td>
+<td><code>docker rmi api-users</code></td>
+</tr>
+<tr>
+<td><code>docker save -o archivo.tar IMAGEN</code></td>
+<td>Exporta imagen a archivo</td>
+<td><code>docker save -o mi-app.tar mi-app:1.0</code></td>
+</tr>
+<tr>
+<td><code>docker load -i archivo.tar</code></td>
+<td>Importa imagen desde archivo</td>
+<td><code>docker load -i mi-app.tar</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔍 Busca imágenes en Docker Hub: <a href="https://hub.docker.com">https://hub.docker.com</a></p>
+</blockquote>
+<hr />
+<p>Listar imágenes locales</p>
+<div class="language-text highlight"><pre><span></span><code>    docker images
+</code></pre></div>
+<p>Descargar una imagen de Docker Hub</p>
+<div class="language-text highlight"><pre><span></span><code>    docker pull redis:7-alpine
+</code></pre></div>
+<p>Construir una imagen desde un Dockerfile</p>
+<div class="language-text highlight"><pre><span></span><code>    docker build -t mi-app:1.0
+</code></pre></div>
+<p>Eliminar una imagen</p>
+<div class="language-text highlight"><pre><span></span><code>    docker rmi mi-app:1.0
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>Un <code>Dockerfile</code> es un <strong>script de texto plano</strong> que define cómo construir una imagen.</p>
+<h3 id="ejemplo-minimo-app-python">Ejemplo mínimo (app Python):</h3>
+<div class="language-dockerfile highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span>#<span class="w"> </span>Capa<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Imagen<span class="w"> </span>base
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>FROM<span class="w"> </span>python:3.11-slim
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span>#<span class="w"> </span>Capa<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>Establecer<span class="w"> </span>directorio<span class="w"> </span>de<span class="w"> </span>trabajo
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span>WORKDIR<span class="w"> </span>/app
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span>#<span class="w"> </span>Capa<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>Copiar<span class="w"> </span>dependencias<span class="w"> </span><span class="o">(</span>solo<span class="w"> </span>requirements.txt<span class="o">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span>COPY<span class="w"> </span>requirements.txt<span class="w"> </span>.
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span>#<span class="w"> </span>Capa<span class="w"> </span><span class="m">4</span>:<span class="w"> </span>Instalar<span class="w"> </span>dependencias
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span>RUN<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span>#<span class="w"> </span>Capa<span class="w"> </span><span class="m">5</span>:<span class="w"> </span>Copiar<span class="w"> </span>código
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span>COPY<span class="w"> </span>.<span class="w"> </span>.
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span>#<span class="w"> </span>Capa<span class="w"> </span><span class="m">6</span>:<span class="w"> </span>Exponer<span class="w"> </span>puerto<span class="w"> </span><span class="o">(</span>documentación<span class="o">)</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span>EXPOSE<span class="w"> </span><span class="m">5000</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span>#<span class="w"> </span>Capa<span class="w"> </span><span class="m">7</span>:<span class="w"> </span>Comando<span class="w"> </span>por<span class="w"> </span>defecto
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span>CMD<span class="w"> </span><span class="o">[</span><span class="s2">&quot;python&quot;</span>,<span class="w"> </span><span class="s2">&quot;app.py&quot;</span><span class="o">]</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>✅ 1. Crear una cuenta en Docker Hub</p>
+<p>Si aún no la tienes:</p>
+<p>🔗 https://hub.docker.com/</p>
+<blockquote>
+<p>Recuerda tu nombre de usuario (por ejemplo: ronaldlopez), pues lo necesitarás para nombrar la imagen.</p>
+</blockquote>
+<p>✅ 2. Construir tu imagen localmente</p>
+<p>Supongamos que tienes un Dockerfile en tu directorio actual:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>nombre-imagen:etiqueta<span class="w"> </span>.
+</span></code></pre></div>
+<blockquote>
+<p>⚠️ Asegúrate de que el proceso termina sin errores (Successfully built ...).</p>
+</blockquote>
+<p>✅ 3. Etiquetar la imagen con tu nombre de usuario de Docker Hub</p>
+<p>El formato debe ser:</p>
+<div class="language-text highlight"><pre><span></span><code>&lt;usuario-dockerhub&gt;/&lt;nombre-repositorio&gt;:&lt;etiqueta&gt;
+</code></pre></div>
+<blockquote>
+<p>Esto no crea una copia; solo agrega un alias al mismo ID de imagen.</p>
+</blockquote>
+<p>✅ 4. Iniciar sesión en Docker Hub desde la terminal
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>login
+</span></code></pre></div>
+Ingresa tu usuario y contraseña cuando se te pida.</p>
+<blockquote>
+<p>💡 Si usas autenticación de 2 factores, deberás generar un Personal Access Token en Docker Hub y usarlo como contraseña.</p>
+</blockquote>
+<p>✅ 5. Subir (push) la imagen
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>push<span class="w"> </span>nombre_usuario/nombre-imagen:etiqueta<span class="w"> </span>.
+</span></code></pre></div>
+✅ Listo. La imagen estará visible en:
+    🔗 https://hub.docker.com/r/ronaldlopez/myapp</p>
+<p>ℹ️ Extra: Buenas prácticas</p>
+<blockquote>
+<p><strong>Usa</strong> etiquetas descriptivas (ej. v1.0, latest, 2026-01-02).</p>
+<p><strong>Evita :</strong> latest en entornos de producción; es mejor usar versiones específicas.</p>
+<p>Si es una <strong>imagen pública</strong>, cualquiera podrá descargarla con docker pull ronaldlopez/myapp:v1.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1"> Conceptos</label><label for="__tabbed_6_2">Comandos escenciales</label><label for="__tabbed_6_3">Ciclo de Vida</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h1 id="que-es-un-contenedor">🧊 ¿Qué es un contenedor?</h1>
+<p>Un <strong>contenedor</strong> es un <strong>entorno de ejecución ligero, aislado y portable</strong> que empaqueta una aplicación junto con todas sus dependencias: código, bibliotecas, configuraciones y herramientas necesarias para ejecutarse.</p>
+<blockquote>
+<p>🔍 <strong>Definición técnica</strong>:<br />
+Es una instancia en ejecución de una <em>imagen Docker</em>, construida sobre tecnologías de aislamiento del kernel de Linux (<code>namespaces</code>, <code>cgroups</code>, <code>UnionFS</code>), que permite ejecutar procesos de forma segura y reproducible, sin interferir con el sistema anfitrión ni con otros contenedores.</p>
+</blockquote>
+<hr />
+<h2 id="por-que-son-utiles-los-contenedores">🤔 ¿Por qué son útiles los contenedores?</h2>
+<p>Imagina esta situación común en desarrollo:</p>
+<blockquote>
+<p><em>“¡Pero en mi máquina sí funciona!”</em><br />
+— Frase célebre cuando una aplicación falla al pasar de desarrollo a pruebas, o de pruebas a producción.</p>
+</blockquote>
+<p>Este problema —conocido como <strong>“works on my machine”</strong>— ocurre porque los entornos difieren: versiones de SO, librerías, variables de entorno, permisos, etc.</p>
+<h3 id="los-contenedores-resuelven-esto-mediante">✅ Los contenedores resuelven esto mediante:</h3>
+<table>
+<thead>
+<tr>
+<th>Beneficio</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reproducibilidad</strong></td>
+<td>La misma imagen produce el mismo comportamiento en cualquier máquina con Docker (desarrollo, CI, producción).</td>
+</tr>
+<tr>
+<td><strong>Aislamiento</strong></td>
+<td>Cada contenedor tiene su propio filesystem, red, procesos y usuarios. Un fallo o conflicto en uno no afecta a los demás.</td>
+</tr>
+<tr>
+<td><strong>Portabilidad</strong></td>
+<td>Una imagen se construye una vez y se ejecuta en cualquier lugar: laptop, servidor físico, nube (AWS, Render, etc.).</td>
+</tr>
+<tr>
+<td><strong>Eficiencia</strong></td>
+<td>No requieren un sistema operativo completo (como las VMs). Se inician en segundos y consumen menos recursos.</td>
+</tr>
+<tr>
+<td><strong>Escalabilidad</strong></td>
+<td>Es trivial ejecutar decenas o cientos de instancias idénticas (p. ej., para balanceo de carga).</td>
+</tr>
+<tr>
+<td><strong>Declaratividad</strong></td>
+<td>El entorno se define como código (<code>Dockerfile</code>, <code>docker-compose.yml</code>), lo que permite versionarlo, revisarlo y automatizarlo.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="contenedores-vs-maquinas-virtuales-vms">🆚 Contenedores vs Máquinas Virtuales (VMs)</h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Máquina Virtual</th>
+<th>Contenedor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Capa de virtualización</strong></td>
+<td>Hipervisor (emula hardware)</td>
+<td>Kernel del host (aislamiento a nivel de proceso)</td>
+</tr>
+<tr>
+<td><strong>Sistema operativo</strong></td>
+<td>SO completo por VM (guest OS)</td>
+<td>Comparte el kernel del host</td>
+</tr>
+<tr>
+<td><strong>Tamaño</strong></td>
+<td>Gigabytes (SO + apps)</td>
+<td>Megabytes (solo app + dependencias esenciales)</td>
+</tr>
+<tr>
+<td><strong>Tiempo de arranque</strong></td>
+<td>Segundos a minutos</td>
+<td>Milisegundos</td>
+</tr>
+<tr>
+<td><strong>Densidad</strong></td>
+<td>Decenas por servidor</td>
+<td>Cientos o miles por servidor</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🎯 <strong>No son rivales, sino complementarios</strong>:<br />
+En la nube, es común ejecutar <strong>contenedores dentro de VMs</strong> para combinar seguridad de aislamiento fuerte (VM) con eficiencia y agilidad (contenedores).</p>
+</blockquote>
+<hr />
+<h2 id="ejemplo-del-mundo-real">🌐 Ejemplo del mundo real</h2>
+<p>Sin contenedores:<br />
+🔹 Desarrollador A usa Java 11, MySQL 8.0, Ubuntu 22.04.<br />
+🔹 Servidor de producción usa Java 8, MySQL 5.7, CentOS 7.<br />
+→ La app falla por incompatibilidades silenciosas.</p>
+<p>Con contenedores:<br />
+🔹 Todos usan la <strong>misma imagen</strong>: <code>openjdk:17-jdk + app.jar + MySQL driver</code>.<br />
+🔹 El entorno es <em>idéntico</em> en todas partes.<br />
+→ La app se comporta igual <strong>siempre</strong>.</p>
+<blockquote>
+<p>💡 <strong>Conclusión</strong>:<br />
+Los contenedores no solo son una herramienta técnica — son una <strong>filosofía de trabajo</strong> que promueve consistencia, colaboración y entrega continua.</p>
+</blockquote>
+</div>
+<div class="tabbed-block">
+<h2 id="tabla-de-comandos-esenciales-para-contenedores">📜 Tabla de comandos esenciales para contenedores</h2>
+<table>
+<thead>
+<tr>
+<th>Categoría</th>
+<th>Comando</th>
+<th>Descripción</th>
+<th>Ejemplo de uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Crear/Ejecutar</strong></td>
+<td><code>docker run [OPCIONES] IMAGEN</code></td>
+<td>Crea e inicia un nuevo contenedor a partir de una imagen.</td>
+<td><code>docker run -d --name web -p 8080:8080 nginx</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>docker run -it IMAGEN comando</code></td>
+<td>Ejecuta un contenedor en modo interactivo (terminal).</td>
+<td><code>docker run -it --rm ubuntu bash</code></td>
+</tr>
+<tr>
+<td><strong>Listar</strong></td>
+<td><code>docker ps</code></td>
+<td>Muestra contenedores <strong>en ejecución</strong>.</td>
+<td><code>docker ps</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>docker ps -a</code></td>
+<td>Muestra <strong>todos</strong> los contenedores (incluidos detenidos).</td>
+<td><code>docker ps -a</code></td>
+</tr>
+<tr>
+<td><strong>Inspeccionar</strong></td>
+<td><code>docker logs CONTENEDOR</code></td>
+<td>Muestra los logs de salida estándar del contenedor.</td>
+<td><code>docker logs web</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>docker logs -f CONTENEDOR</code></td>
+<td>Sigue los logs en tiempo real (como <code>tail -f</code>).</td>
+<td><code>docker logs -f db</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>docker inspect CONTENEDOR</code></td>
+<td>Muestra metadatos detallados en formato JSON.</td>
+<td><code>docker inspect web \| jq '.[0].NetworkSettings'</code></td>
+</tr>
+<tr>
+<td><strong>Acceder</strong></td>
+<td><code>docker exec -it CONTENEDOR comando</code></td>
+<td>Ejecuta un comando dentro de un contenedor <strong>en ejecución</strong>.</td>
+<td><code>docker exec -it db mysql -u root -p</code></td>
+</tr>
+<tr>
+<td><strong>Detener</strong></td>
+<td><code>docker stop CONTENEDOR</code></td>
+<td>Detiene el contenedor de forma elegante (envía <code>SIGTERM</code> → <code>SIGKILL</code>).</td>
+<td><code>docker stop web</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>docker kill CONTENEDOR</code></td>
+<td>Detiene el contenedor inmediatamente (<code>SIGKILL</code>).</td>
+<td><code>docker kill app</code></td>
+</tr>
+<tr>
+<td><strong>Reiniciar</strong></td>
+<td><code>docker restart CONTENEDOR</code></td>
+<td>Detiene y vuelve a iniciar el contenedor.</td>
+<td><code>docker restart cache</code></td>
+</tr>
+<tr>
+<td><strong>Eliminar</strong></td>
+<td><code>docker rm CONTENEDOR</code></td>
+<td>Elimina un contenedor <strong>detenido</strong>.</td>
+<td><code>docker rm old-app</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>docker rm -f CONTENEDOR</code></td>
+<td>Fuerza la eliminación (detiene y elimina en un paso).</td>
+<td><code>docker rm -f temp</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>docker container prune</code></td>
+<td>Elimina <strong>todos</strong> los contenedores detenidos.</td>
+<td><code>docker container prune -f</code></td>
+</tr>
+<tr>
+<td><strong>Gestión masiva</strong></td>
+<td><code>docker stop $(docker ps -q)</code></td>
+<td>Detiene todos los contenedores en ejecución.</td>
+<td><code>docker stop $(docker ps -q)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>docker rm -f $(docker ps -aq)</code></td>
+<td>Elimina <strong>todos</strong> los contenedores (en ejecución o no). ⚠️ ¡Cuidado!</td>
+<td><code>docker rm -f $(docker ps -aq)</code></td>
+</tr>
+<tr>
+<td><strong>Políticas</strong></td>
+<td><code>docker run --restart POLÍTICA ...</code></td>
+<td>Define comportamiento ante fallos o reinicios del host.</td>
+<td><code>docker run -d --restart unless-stopped redis</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>Sugerencias de uso</strong>:
+- Usa <code>--name</code> para asignar nombres significativos (evita IDs como <code>a1b2c3</code>).
+- Usa <code>-d</code> para servicios (web, DB); <code>-it</code> para sesiones interactivas.
+- Usa <code>--rm</code> con <code>-it</code> en contenedores temporales para limpieza automática.
+- Siempre verifica con <code>docker ps -a</code> antes de eliminar.</p>
+</blockquote>
+</div>
+<div class="tabbed-block">
+<h2 id="gestion-del-ciclo-de-vida-de-contenedores">🧊 Gestión del Ciclo de Vida de Contenedores</h2>
+<p>Un contenedor no es estático: nace, vive, se detiene, se reinicia y finalmente muere. Dominar su ciclo de vida es esencial para usar Docker de forma eficiente y segura.</p>
+<blockquote>
+<p>🔑 <strong>Principios clave</strong>:<br />
+Los contenedores son <strong>efímeros</strong>. </p>
+<p>Diseña tus aplicaciones asumiendo que cualquier contenedor puede desaparecer en cualquier momento. </p>
+<p>La persistencia debe manejarse <strong>fuera</strong> del contenedor (volúmenes, servicios externos).</p>
+</blockquote>
+<hr />
+<h3 id="1-crear-y-ejecutar-contenedores">🚀 1. Crear y ejecutar contenedores</h3>
+<p>El comando <code>docker run</code> <strong>crea + inicia</strong> un contenedor en un solo paso.</p>
+<h3 id="sintaxis-basica">Sintaxis básica</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span><span class="o">[</span>OPCIONES<span class="o">]</span><span class="w"> </span>IMAGEN<span class="w"> </span><span class="o">[</span>COMANDO<span class="o">]</span><span class="w"> </span><span class="o">[</span>ARGUMENTOS<span class="o">]</span>
+</span></code></pre></div>
+<h3 id="2-modos-de-ejecucion-interactivo-o-en-segundo-plano">🚀 2. Modos de ejecución: ¿interactivo o en segundo plano?</h3>
+<p>▶️ Ejecución interactiva (-it)</p>
+<p>Ideal para shells, depuración o apps CLI.</p>
+<h3 id="flags-para-modo-interactivo">🔧 Flags para modo interactivo</h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Nombre largo</th>
+<th>Significado</th>
+<th>Cuándo usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-i</code></td>
+<td><code>--interactive</code></td>
+<td>Mantiene <strong>STDIN abierto</strong> incluso si no está conectado a una terminal. Permite enviar entrada al proceso (ej: escribir en una shell).</td>
+<td>Siempre que necesites interactuar con el proceso (ej: introducir contraseñas, comandos).</td>
+</tr>
+<tr>
+<td><code>-t</code></td>
+<td><code>--tty</code></td>
+<td>Asigna una <strong>pseudo-terminal (TTY)</strong>. Habilita formato, colores, autocompletado y control de cursor (como una terminal real).</td>
+<td>Cuando el proceso espera una terminal (ej: <code>bash</code>, <code>sh</code>, <code>mysql</code> CLI).</td>
+</tr>
+<tr>
+<td><code>-it</code></td>
+<td><code>--interactive --tty</code></td>
+<td><strong>Combinación esencial</strong> para sesiones interactivas completas.</td>
+<td>✅ Casi siempre para: <code>docker run -it ubuntu bash</code>, <code>docker exec -it app sh</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>💾 Volúmenes (Volumes)</p>
+<p>Los volúmenes son la forma recomendada de persistir datos generados por contenedores (ej: bases de datos, archivos subidos).</p>
+<div class="language-text highlight"><pre><span></span><code>Tipos comunes:
+volume
+(gestionado por Docker)
+✅ Producción (mejor rendimiento y portabilidad)
+bind mount
+(monta una carpeta del host)
+✅ Desarrollo (ej: código en tiempo real)
+tmpfs
+(almacenamiento en RAM)
+Datos efímeros (seguridad, velocidad)
+
+Ejemplo: Persistir datos de PostgreSQL
+bash
+
+# Crear un volumen gestionado
+docker volume create pgdata
+
+# Iniciar PostgreSQL con el volumen
+docker run -d \
+--name postgres \
+-e POSTGRES_PASSWORD=secreto \
+-v pgdata:/var/lib/postgresql/data \
+postgres:15
+→ Los datos sobreviven aunque el contenedor se elimine.
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>🌐 Redes (Networks)
+Docker provee redes virtuales para que los contenedores se comuniquen entre sí y con el exterior.</p>
+<p>Tipos de redes:
+bridge
+(por defecto)
+Red privada para contenedores en el mismo host. Se usa
+-p
+para exponer puertos.
+host
+El contenedor comparte la red del host (sin aislamiento). Alto rendimiento, bajo aislamiento.
+none
+Sin red. Totalmente aislado.
+overlay
+Para contenedores en múltiples hosts (usado con Docker Swarm/Kubernetes).
+custom bridge
+✅ Recomendado para apps multi-contenedor (resolución DNS automática por nombre).</p>
+<p>Ejemplo: Red personalizada
+bash</p>
+<h1 id="crear-red">Crear red</h1>
+<p>docker network create mi-red</p>
+<h1 id="ejecutar-dos-servicios-en-la-misma-red">Ejecutar dos servicios en la misma red</h1>
+<p>docker run -d --name api --network mi-red node-app
+docker run -d --name db   --network mi-red postgres</p>
+<h1 id="desde-api-puedes-acceder-a-db-usando-el-nombre-httpdb5432">Desde 'api', puedes acceder a 'db' usando el nombre: http://db:5432</h1>
+<p>✅ Ventaja: resolución DNS integrada — no necesitas IPs fijas.</p>
+</div>
+</div>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../devops/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: DevOps">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                DevOps
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../redes/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Redes">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Redes
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Boris Salleg
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.sections", "content.tabs.link", "content.code.annotate", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

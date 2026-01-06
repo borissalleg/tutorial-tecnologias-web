@@ -1,0 +1,1830 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentación del curso de Tecnologias Web">
+      
+      
+      
+      
+        <link rel="prev" href="../arquitectura/">
+      
+      
+        <link rel="next" href="../docker/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>DevOps - Tecnologias Web</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/styles.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduccion-a-docker-y-devops-para-estudiantes" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Tecnologias Web" class="md-header__button md-logo" aria-label="Tecnologias Web" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Tecnologias Web
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DevOps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="purple" data-md-color-accent="orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Tecnologias Web" class="md-nav__button md-logo" aria-label="Tecnologias Web" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Tecnologias Web
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contenido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contenido
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura de Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#y-por-que-deberias-conocerlo-en-tu-rol-de-estudiante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (Y por qué deberías conocerlo en tu rol de estudiante—)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#en-una-frase-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 En una frase simple:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#las-3-ideas-clave-de-devops-faciles-de-recordar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Las 3 ideas clave de DevOps (fáciles de recordar)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herramientas-que-veras-y-usaras-pronto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Herramientas que verás (y usarás pronto)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-a-ti-como-estudiante-te-importa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌱 ¿Por qué a ti, como estudiante, te importa?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-historia-detras-del-movimiento-que-cambio-la-forma-de-construir-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La historia detrás del movimiento que cambió la forma de construir software
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-problema-que-nadie-queria-admitir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📉 El problema que nadie quería admitir
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-intento-de-agile-y-su-limite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔁 El intento de Agile… y su límite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-clic-de-la-teoria-a-la-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 El “clic”: de la teoría a la práctica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 El “clic”: de la teoría a la práctica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-la-teoria-de-las-restricciones-the-goal-1984" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 📚 La teoría de las restricciones (The Goal, 1984)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-automatizacion-infraestructura-como-codigo-iac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 🛠️ Automatización + Infraestructura como Código (IaC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-la-revolucion-de-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ☁️ La revolución de la nube
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-nacimiento-oficial-20082009" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎉 El nacimiento oficial: 2008–2009
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-devops-tenia-que-nacer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌍 ¿Por qué DevOps tenía que nacer?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#en-resumen-devops-nace-de" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 En resumen: DevOps nace de…
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-seguir-explorando-recomendado-para-estudiantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Para seguir explorando (recomendado para estudiantes)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dockercompose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Compose
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#y-por-que-deberias-conocerlo-en-tu-rol-de-estudiante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (Y por qué deberías conocerlo en tu rol de estudiante—)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#en-una-frase-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 En una frase simple:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#las-3-ideas-clave-de-devops-faciles-de-recordar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Las 3 ideas clave de DevOps (fáciles de recordar)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herramientas-que-veras-y-usaras-pronto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Herramientas que verás (y usarás pronto)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-a-ti-como-estudiante-te-importa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌱 ¿Por qué a ti, como estudiante, te importa?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-historia-detras-del-movimiento-que-cambio-la-forma-de-construir-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La historia detrás del movimiento que cambió la forma de construir software
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-problema-que-nadie-queria-admitir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📉 El problema que nadie quería admitir
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-intento-de-agile-y-su-limite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔁 El intento de Agile… y su límite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-clic-de-la-teoria-a-la-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 El “clic”: de la teoría a la práctica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 El “clic”: de la teoría a la práctica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-la-teoria-de-las-restricciones-the-goal-1984" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 📚 La teoría de las restricciones (The Goal, 1984)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-automatizacion-infraestructura-como-codigo-iac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 🛠️ Automatización + Infraestructura como Código (IaC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-la-revolucion-de-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ☁️ La revolución de la nube
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#el-nacimiento-oficial-20082009" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎉 El nacimiento oficial: 2008–2009
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-devops-tenia-que-nacer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌍 ¿Por qué DevOps tenía que nacer?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#en-resumen-devops-nace-de" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 En resumen: DevOps nace de…
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-seguir-explorando-recomendado-para-estudiantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Para seguir explorando (recomendado para estudiantes)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="introduccion-a-docker-y-devops-para-estudiantes">🐳 <strong>Introducción a Docker y DevOps para Estudiantes</strong></h1>
+<blockquote>
+<p><em>Aprende a construir, probar y entregar software como lo hacen las empresas modernas —sin abrumarte.</em></p>
+</blockquote>
+<hr />
+<p><img alt="CI/CD" src="https://shalb.com/wp-content/uploads/2019/11/Devops1-2048x1338.jpeg" /></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">¿Qué es DevOps?</label><label for="__tabbed_1_2">Origen de DevOps</label><label for="__tabbed_1_3">Cultura DevOps</label><label for="__tabbed_1_4">Pilares CALMS</label><label for="__tabbed_1_5">Métricas Clave de DevOps</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 id="y-por-que-deberias-conocerlo-en-tu-rol-de-estudiante">(Y por qué deberías conocerlo en tu rol de estudiante—)</h3>
+<p>Imagina esto:</p>
+<blockquote>
+<p>Tú y tu grupo terminan una app genial para el proyecto de la clase.<br />
+El código funciona <strong>perfecto</strong> en sus laptops…<br />
+Pero al entregarlo al profesor para probarlo…<br />
+❌ <em>“No me corre”</em>, dice.<br />
+❌ <em>“Me falta una librería”</em>, dice otro.<br />
+❌ <em>“Cambió la versión de Python y ahora todo se rompe”</em>, dice un tercero.</p>
+</blockquote>
+<p>¡Uff! 😩<br />
+Ese es el <strong>problema que DevOps ayuda a resolver</strong>.</p>
+<hr />
+<h3 id="en-una-frase-simple">💡 En una frase simple:</h3>
+<blockquote>
+<p><strong>DevOps es una forma de trabajar donde los que desarrollan software (<em>Dev</em>) y los que lo ponen a funcionar en servidores (<em>Ops</em>) dejan de pelearse… ¡y empiezan a colaborar como un solo equipo!</strong></p>
+</blockquote>
+<p>No es una herramienta. No es un cargo.</p>
+<p>Es una <strong>cultura</strong>, un <strong>mindset</strong>, y un conjunto de <strong>prácticas</strong> para que el software:</p>
+<ul>
+<li>✅ Se construya más rápido  </li>
+<li>✅ Funcione igual en todas partes  </li>
+<li>✅ Se entregue sin miedo (¡hasta varias veces al día!)  </li>
+<li>✅ Se recupere rápido si algo falla</li>
+</ul>
+<hr />
+<h3 id="las-3-ideas-clave-de-devops-faciles-de-recordar">🧩 <strong>Las 3 ideas clave de DevOps (fáciles de recordar)</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Idea</th>
+<th>¿Qué significa?</th>
+<th>Ejemplo estudiantil 🎓</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Automatización</strong></td>
+<td>Que las computadoras hagan lo aburrido (y propenso a errores)</td>
+<td>En vez de instalar manualmente Python, Flask y Redis en cada laptop… usas un <code>Dockerfile</code> que lo hace en 10 segundos ⏱️</td>
+</tr>
+<tr>
+<td><strong>CI/CD</strong><br>(<em>Integración y Entrega Continua</em>)</td>
+<td>Cada cambio de código se prueba y despliega <em>automáticamente</em></td>
+<td>Subes tu código a GitHub → un robot lo prueba → si todo pasa, lo sube solo a un servidor web 🤖🚀</td>
+</tr>
+<tr>
+<td><strong>Colaboración + Feedback rápido</strong></td>
+<td>Romper silos: devs, testers, sysadmins hablan desde el día 1</td>
+<td>En tu grupo: el que sabe de front, el de back y el de BD diseñan juntos la API… no al final, sino desde la semana 1 🤝</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="herramientas-que-veras-y-usaras-pronto">🛠️ Herramientas que verás (y usarás pronto)</h3>
+<table>
+<thead>
+<tr>
+<th>Categoría</th>
+<th>Herramientas comunes</th>
+<th>¿Para qué sirven?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🐳 <strong>Contenedores</strong></td>
+<td>Docker, Podman</td>
+<td>Empaquetar apps para que "corran igual en todas partes"</td>
+</tr>
+<tr>
+<td>🔄 <strong>CI/CD</strong></td>
+<td>GitHub Actions, GitLab CI, Jenkins</td>
+<td>Automatizar pruebas y despliegues</td>
+</tr>
+<tr>
+<td>☁️ <strong>Infraestructura como Código (IaC)</strong></td>
+<td>Terraform, Ansible</td>
+<td>Crear servidores con código (¡como <code>docker run</code>, pero en la nube!)</td>
+</tr>
+<tr>
+<td>📊 <strong>Monitoreo</strong></td>
+<td>Prometheus, Grafana</td>
+<td>Ver si tu app está lenta, caída o usando mucha RAM</td>
+</tr>
+</tbody>
+</table>
+<p>👉 <strong>No necesitas aprenderlas todas ahora</strong>.<br />
+Empieza con <strong>Git + Docker + GitHub Actions</strong> → ya estarás haciendo <em>mini-DevOps</em>.</p>
+<hr />
+<h3 id="por-que-a-ti-como-estudiante-te-importa">🌱 ¿Por qué a ti, como estudiante, te importa?</h3>
+<ul>
+<li>📈 <strong>Las empresas lo piden</strong>: +70 % de ofertas de desarrollo incluyen "experiencia con DevOps".</li>
+<li>🧪 <strong>Te ahorra horas</strong> en proyectos grupales (¡adiós, <em>"funciona en mi máquina!"</em>).</li>
+<li>🚀 <strong>Te da ventaja en pasantías</strong>: si sabes automatizar despliegues, ya vales más que muchos juniors.</li>
+<li>🔓 <strong>Te prepara para lo real</strong>: el mundo no quiere solo programadores… quiere <strong>personas que entreguen valor, rápido y con calidad</strong>.</li>
+</ul>
+<blockquote>
+<p>✨ <em>“DevOps no es sobre herramientas.<br />
+Es sobre reducir el tiempo entre tener una idea…<br />
+y que esa idea le entregue valor a alguien.”</em><br />
+— Adaptado de Gene Kim</p>
+</blockquote>
+</div>
+<div class="tabbed-block">
+<h2 id="la-historia-detras-del-movimiento-que-cambio-la-forma-de-construir-software">La historia detrás del movimiento que cambió la forma de construir software</h2>
+<hr />
+<blockquote>
+<p>💡 <strong>DevOps no fue inventado en un laboratorio.</strong><br />
+Nació del <strong>dolor real</strong>, de noches sin dormir, despliegues fallidos y reuniones donde Dev y Ops se miraban como enemigos.<br />
+Es la respuesta a una pregunta muy simple:  </p>
+<blockquote>
+<p><strong><em>“¿Por qué si el código funciona en desarrollo… se rompe en producción?”</em></strong></p>
+</blockquote>
+</blockquote>
+<hr />
+<h2 id="el-problema-que-nadie-queria-admitir">📉 El problema que nadie quería admitir</h2>
+<p>Hasta principios de los 2000, el ciclo de vida del software era más o menos así:</p>
+<p>[ Desarrollo ]
+    │
+    ▼
+    (Entrega un ZIP o un JAR)
+    │
+    ▼
+    [ Operaciones ] ← "¡Oiga, esto no corre en los servidores!"
+    │
+    ▼
+    [ Producción ] ← Caídas, correos a medianoche, culpas cruzada</p>
+<p>Este modelo tenía <strong>3 grandes grietas</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Consecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❌ <strong>Silos organizacionales</strong></td>
+<td>Los desarrolladores (<em>Dev</em>) se medían por <em>entregas de código</em>. Los operadores (<em>Ops</em>) por <em>estabilidad</em>. ¡Metas opuestas!</td>
+</tr>
+<tr>
+<td>❌ <strong>Entregas manuales y raras</strong></td>
+<td>Un despliegue cada 3 meses… con 2 semanas de preparación y una noche de "mantenimiento" (traducción: oración y café).</td>
+</tr>
+<tr>
+<td>❌ <strong>Falta de feedback rápido</strong></td>
+<td>Un bug encontrado en producción podía tardar <em>días</em> en llegar al equipo que lo escribió.</td>
+</tr>
+</tbody>
+</table>
+<p>👉 El resultado: <strong>software lento, frágil y caro de mantener</strong>.</p>
+<hr />
+<h2 id="el-intento-de-agile-y-su-limite">🔁 El intento de Agile… y su límite</h2>
+<p>En 2001 nació el <strong>Manifiesto Ágil</strong>, con principios revolucionarios:</p>
+<blockquote>
+<p>✅ <em>“Entrega continua de software útil”</em><br />
+✅ <em>“Colaboración diaria entre patrocinadores y desarrolladores”</em><br />
+✅ <em>“Respuesta ágil al cambio”</em></p>
+</blockquote>
+<p>Pero…<br />
+🎯 <strong>Agile se quedó en desarrollo</strong>.<br />
+Ops seguía fuera del sprint. La “última milla” (llevar el software a producción) seguía siendo un <em>valle de lágrimas</em>.</p>
+<blockquote>
+<p>🎯 <strong>Metáfora</strong>:<br />
+Agile enseñó a correr rápido… pero con zapatos atados entre sí.<br />
+DevOps desató los cordones.</p>
+</blockquote>
+<hr />
+<h2 id="el-clic-de-la-teoria-a-la-practica">🧩 El “clic”: de la teoría a la práctica</h2>
+<p>Tres ideas convergieron para hacer posible DevOps:</p>
+<h3 id="1-la-teoria-de-las-restricciones-the-goal-1984">1. 📚 <strong>La teoría de las restricciones</strong> (<em>The Goal</em>, 1984)</h3>
+<ul>
+<li>Libro de <strong>Eliyahu Goldratt</strong>, escrito como novela.</li>
+<li>Idea clave: <em>“Todo sistema tiene un cuello de botella. Mejorar fuera de él no sirve.”</em></li>
+<li>En software: el cuello de botella era <strong>la transición entre Dev y Ops</strong>.</li>
+</ul>
+<h3 id="2-automatizacion-infraestructura-como-codigo-iac">2. 🛠️ <strong>Automatización + Infraestructura como Código (IaC)</strong></h3>
+<ul>
+<li>Herramientas como <strong>Puppet (2005)</strong> y <strong>Chef (2009)</strong> permitieron definir servidores… ¡con código!</li>
+<li>Ya no había que configurar cada máquina a mano → se podían replicar entornos <em>idénticos</em>.</li>
+</ul>
+<h3 id="3-la-revolucion-de-la-nube">3. ☁️ <strong>La revolución de la nube</strong></h3>
+<ul>
+<li>AWS lanzó EC2 en 2006. De pronto, crear un servidor tomaba <strong>minutos</strong>, no semanas.</li>
+<li>Esto hizo posible probar, desplegar y escalar… sin pedir permiso al área de infraestructura.</li>
+</ul>
+<hr />
+<h2 id="el-nacimiento-oficial-20082009">🎉 El nacimiento oficial: 2008–2009</h2>
+<table>
+<thead>
+<tr>
+<th>Momento</th>
+<th>Qué pasó</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agosto 2008</strong></td>
+<td>En la conferencia <em>Agile 2008</em> (Toronto), <strong>Patrick Debois</strong> —un consultor belga— escucha una charla sobre <em>10+ deploys per day</em> en Flickr. Se da cuenta: <em>“¡Ellos sí integran Dev y Ops!”</em>. Frustado porque en su proyecto no podía hacer lo mismo, decide actuar.</td>
+</tr>
+<tr>
+<td><strong>Octubre 2009</strong></td>
+<td>Patrick organiza en <strong>Gante (Bélgica)</strong> la primera <strong>DevOpsDays</strong> —una mezcla de conferencia y <em>unconference</em>. Invita a devs, sysadmins, testers… todos con el mismo dolor.</td>
+</tr>
+<tr>
+<td><strong>Noviembre 2009</strong></td>
+<td>Para acortar el hashtag del evento en Twitter, usa <strong>#DevOps</strong>. El término se viraliza. 🚀</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📌 <strong>Patrick Debois</strong> no inventó las prácticas…<br />
+pero <strong>dio nombre al movimiento</strong> y construyó la comunidad que lo hizo crecer.</p>
+</blockquote>
+<hr />
+<h2 id="por-que-devops-tenia-que-nacer">🌍 ¿Por qué DevOps <em>tenía</em> que nacer?</h2>
+<table>
+<thead>
+<tr>
+<th>Fuerza impulsora</th>
+<th>Explicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Velocidad del negocio</strong></td>
+<td>Empresas como Amazon y Netflix competían en <em>tiempo</em>: quien sacaba funcionalidades más rápido, ganaba.</td>
+</tr>
+<tr>
+<td><strong>Complejidad creciente</strong></td>
+<td>Aplicaciones ya no eran monolitos: eran microservicios, APIs, bases de datos distribuidas… imposibles de gestionar manualmente.</td>
+</tr>
+<tr>
+<td><strong>Cultura open source</strong></td>
+<td>La mentalidad de “compartir, colaborar, mejorar juntos” (como en Linux o Git) se extendió a procesos.</td>
+</tr>
+<tr>
+<td><strong>Fallos costosos</strong></td>
+<td>Un despliegue fallido en Amazon podía costar <strong>$millones/minuto</strong>. La estabilidad dejó de ser “bonita”… y se volvió <em>estratégica</em>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="en-resumen-devops-nace-de">🧠 En resumen: DevOps nace de…</h2>
+<table>
+<thead>
+<tr>
+<th>Origen</th>
+<th>Se traduce en…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🧩 <strong>Problemas reales</strong> (entregas rotas, noches de crisis)</td>
+<td>→ Necesidad de <strong>confiabilidad</strong></td>
+</tr>
+<tr>
+<td>🤝 <strong>Frustración cultural</strong> (Dev vs. Ops)</td>
+<td>→ Necesidad de <strong>colaboración</strong></td>
+</tr>
+<tr>
+<td>🤖 <strong>Avances técnicos</strong> (nube, contenedores, CI/CD)</td>
+<td>→ Posibilidad de <strong>automatizarlo todo</strong></td>
+</tr>
+<tr>
+<td>📈 <strong>Presión del mercado</strong> (innovar o morir)</td>
+<td>→ Urgencia de <strong>entregar valor rápido</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ DevOps no es una moda.<br />
+Es la <strong>evolución natural</strong> de cómo construimos software cuando la velocidad, la calidad y la colaboración son no negociables.</p>
+</blockquote>
+<hr />
+<h2 id="para-seguir-explorando-recomendado-para-estudiantes">📚 Para seguir explorando (recomendado para estudiantes)</h2>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Por qué leerlo/verlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📘 <a href="https://itrevolution.com/book/the-phoenix-project/"><em>The Phoenix Project</em></a> (novela)</td>
+<td>La mejor forma de entender DevOps… ¡como si fuera una historia de suspense empresarial!</td>
+</tr>
+<tr>
+<td>🎥 <a href="https://youtu.be/7bZ79qZkZ6o">What is DevOps? (TechWorld with Nana)</a></td>
+<td>Explicación visual y clara en 10 minutos.</td>
+</tr>
+<tr>
+<td>📊 <a href="https://cloud.google.com/devops">State of DevOps Reports (DORA)</a></td>
+<td>Datos reales: qué prácticas sí mejoran desempeño (spoiler: automatización y cultura).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p>🌟 <strong>Reflexión final</strong>:<br />
+DevOps no nació para que uses más herramientas.<br />
+Nació para que <strong>pases menos tiempo arreglando lo que se rompió…<br />
+y más tiempo creando lo que importa.</strong>  </p>
+</blockquote>
+<p>🚀 ¿Listo para ser parte de la solución?</p>
+</div>
+<div class="tabbed-block">
+<h1 id="que-es-y-en-que-consiste-la-cultura-devops">🌱 ¿Qué es y en qué consiste la <strong>cultura DevOps</strong>?</h1>
+<h2 id="porque-devops-no-es-docker-es-como-trabajamos-juntos">Porque DevOps no es Docker… es <em>cómo trabajamos juntos</em></h2>
+<blockquote>
+<p>💬 <em>"Herramientas no hacen DevOps. Las personas sí.<br />
+Y las personas necesitan una cultura que las respalde."</em><br />
+— Adaptado de Gene Kim</p>
+</blockquote>
+<hr />
+<h2 id="lo-primero-que-no-es-la-cultura-devops">❌ Lo primero: ¿Qué <strong>NO</strong> es la cultura DevOps?</h2>
+<table>
+<thead>
+<tr>
+<th>Mito</th>
+<th>Realidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✖️ <em>"Es un equipo nuevo: 'el equipo DevOps'"</em></td>
+<td>✔️ DevOps no es un cargo ni un departamento. <br> Es una <strong>forma de trabajar entre todos</strong>.</td>
+</tr>
+<tr>
+<td>✖️ <em>"Basta con instalar Jenkins y Docker"</em></td>
+<td>✔️ Las herramientas son necesarias… pero sin cultura, solo automatizas el caos.</td>
+</tr>
+<tr>
+<td>✖️ <em>"Es solo para empresas grandes"</em></td>
+<td>✔️ Un grupo de 4 estudiantes puede aplicar cultura DevOps en su proyecto final.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="entonces-que-si-es-la-cultura-devops">✅ Entonces… ¿qué <strong>SÍ</strong> es la cultura DevOps?</h2>
+<p>Es un conjunto de <strong>valores, principios y comportamientos</strong> que permiten a los equipos:</p>
+<blockquote>
+<p>🎯 <strong>Entregar valor al usuario, de forma rápida, segura y sostenible.</strong></p>
+</blockquote>
+<p>No se impone desde arriba.<br />
+Se cultiva día a día, con pequeñas decisiones.</p>
+<hr />
+<h2 id="los-4-pilares-de-la-cultura-devops">🧭 Los 4 pilares de la cultura DevOps</h2>
+<p><em>(Basados en el libro </em><em>"Accelerate"</em><em> —el estudio más grande sobre alto desempeño en TI)</em></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1"><strong>1. Flujo de trabajo (Flow)</strong></label><label for="__tabbed_2_2"><strong>2. Retroalimentación rápida (Feedback)</strong></label><label for="__tabbed_2_3"><strong>3. Aprendizaje y experimentación continua (Learning)</strong></label><label for="__tabbed_2_4"><strong>4. Responsabilidad compartida (Shared Ownership)</strong></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<blockquote>
+<p><em>Minimizar el tiempo desde la idea hasta el usuario.</em></p>
+</blockquote>
+<p>🔹 <strong>Se manifiesta cuando…</strong><br />
+- Haces <em>commits</em> pequeños y frecuentes (no un mega-PR cada 3 semanas).<br />
+- Tienes entornos de prueba <strong>idénticos a producción</strong> (gracias a Docker, por ejemplo 🐳).<br />
+- Reduces los "cuellos de botella": aprobaciones manuales, reuniones innecesarias, colas de despliegue.</p>
+<p>🎯 <strong>Métrica clave</strong>: <em>Tiempo de ciclo</em> (desde código escrito → en producción).</p>
+<hr />
+</div>
+<div class="tabbed-block">
+<blockquote>
+<p><em>Detectar errores y oportunidades </em>antes<em>, no después.</em></p>
+</blockquote>
+<p>🔹 <strong>Se manifiesta cuando…</strong><br />
+- Tienes pruebas automatizadas que corren en <strong>minutos</strong>, no horas.<br />
+- Cada <code>git push</code> dispara una <em>pipeline</em> (CI/CD) que te dice: ✅ pasa / ❌ falla.<br />
+- El equipo de QA colabora desde el <em>diseño</em>, no solo al final.<br />
+- Haces <em>post-mortems sin culpa</em> (blameless retrospectives) cuando algo falla.</p>
+<p>🎯 <strong>Métrica clave</strong>: <em>Tiempo para detectar y resolver fallos</em>.</p>
+<hr />
+</div>
+<div class="tabbed-block">
+<blockquote>
+<p><em>Fracasar rápido, aprender más rápido.</em></p>
+</blockquote>
+<p>🔹 <strong>Se manifiesta cuando…</strong><br />
+- Se celebra más por <em>lo que se aprendió</em> que por "no haber fallado".<br />
+- Haces experimentos pequeños: <em>feature flags</em>, A/B testing, despliegues canarios.<br />
+- Dedicas tiempo a <em>refactorizar</em>, <em>documentar</em> y <em>pagar deuda técnica</em>.<br />
+- Compartes conocimiento: tech talks, pair programming, repositorios abiertos.</p>
+<p>🎯 <strong>Métrica clave</strong>: <em>Frecuencia de experimentación y mejora del sistema</em>.</p>
+<hr />
+</div>
+<div class="tabbed-block">
+<blockquote>
+<p><em>“No es mi problema” → “¿Cómo lo resolvemos juntos?”</em></p>
+</blockquote>
+<p>🔹 <strong>Se manifiesta cuando…</strong><br />
+- El desarrollador <strong>no dice</strong>: <em>“En mi máquina funciona”</em>.<br />
+- El operador <strong>no dice</strong>: <em>“Eso es problema de desarrollo”</em>.<br />
+- Todos monitorean producción (logs, métricas, alertas).<br />
+- Cualquiera puede (y debe) proponer mejoras en infraestructura, despliegue o código.</p>
+<p>🎯 <strong>Métrica clave</strong>: <em>Nivel de colaboración cruzada y autonomía del equipo</em>.</p>
+<hr />
+</div>
+</div>
+</div>
+<h2 id="como-se-ve-la-cultura-devops-en-la-practica">🧩 ¿Cómo se ve la cultura DevOps en la práctica?</h2>
+<h3 id="ejemplos-reales-hasta-en-la-universidad">Ejemplos reales (¡hasta en la universidad!)</h3>
+<table>
+<thead>
+<tr>
+<th>Situación típica</th>
+<th>Mentalidad <em>anti-DevOps</em></th>
+<th>Mentalidad <em>DevOps</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>El proyecto falla en la entrega</strong></td>
+<td>👉 <em>"Fue culpa del que hizo el backend"</em></td>
+<td>👉 <em>"¿Qué proceso permitió que esto llegara tan lejos? ¿Cómo lo evitamos?"</em></td>
+</tr>
+<tr>
+<td><strong>Hay que desplegar</strong></td>
+<td>👉 Un solo compañero lo hace a medianoche, en secreto</td>
+<td>👉 El despliegue es automatizado, documentado y <em>cualquiera puede hacerlo con un botón</em></td>
+</tr>
+<tr>
+<td><strong>Aparece un bug en producción</strong></td>
+<td>👉 Se apaga la app y se corrige a mano (sin tests)</td>
+<td>👉 Se activa alerta → equipo revisa logs → corrige → prueba → despliega → comparte hallazgos</td>
+</tr>
+<tr>
+<td><strong>Nuevo integrante al grupo</strong></td>
+<td>👉 <em>"Te mando un PDF de 50 páginas… si lo lees, suerte"</em></td>
+<td>👉 <em>"Clona este repo → ejecuta <code>docker-compose up</code> → ya tienes todo listo. Te acompaño 1 hora."</em></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="como-empezar-a-construir-cultura-devops-como-estudiante">🌱 Cómo empezar a construir cultura DevOps (como estudiante)</h2>
+<p>No necesitas permiso. Empieza <strong>hoy</strong>, en tu próximo proyecto:</p>
+<table>
+<thead>
+<tr>
+<th>Acción pequeña</th>
+<th>Impacto grande</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ Usa <code>git</code> desde el día 1 (no solo al final)</td>
+<td>→ Transparencia y trazabilidad</td>
+</tr>
+<tr>
+<td>✅ Escribe un <code>README.md</code> con: <em>cómo instalar, cómo ejecutar, cómo probar</em></td>
+<td>→ Empatía con quien recibe tu código</td>
+</tr>
+<tr>
+<td>✅ Dockeriza tu app (aunque sea simple)</td>
+<td>→ “Funciona en mi máquina” <strong>desaparece</strong></td>
+</tr>
+<tr>
+<td>✅ Haz una retrospectiva de 15 min al terminar la entrega</td>
+<td>→ “¿Qué salió bien? ¿Qué mejoraríamos?”</td>
+</tr>
+<tr>
+<td>✅ Comparte un enlace a tu repositorio público (GitHub)</td>
+<td>→ Mentalidad open, feedback externo</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✨ <strong>Recuerda</strong>: La cultura no se construye en un día.<br />
+Se construye cada vez que eliges <em>colaborar</em> en vez de culpar,<br />
+<em>automatizar</em> en vez de repetir,<br />
+y <em>aprender</em> en vez de esconder.</p>
+</blockquote>
+<hr />
+<h2 id="autoevaluacion-rapida-tu-equipo-tiene-cultura-devops">📊 Autoevaluación rápida: ¿Tu equipo tiene cultura DevOps?</h2>
+<p>Responde sí/no:</p>
+<ul>
+<li>[ ] ¿Cualquiera en el equipo puede desplegar a un entorno de prueba?  </li>
+<li>[ ] ¿Tienen pruebas automatizadas (aunque sean 2)?  </li>
+<li>[ ] ¿Hacen una reunión corta para ajustar el rumbo cada 1–2 semanas?  </li>
+<li>[ ] ¿Documentan decisiones clave (ej: “por qué usamos SQLite y no PostgreSQL”)?  </li>
+<li>[ ] ¿Celebrazan los aprendizajes, no solo los éxitos?</li>
+</ul>
+<p>✅ <strong>3+ sí</strong> → ¡Van por buen camino!<br />
+🟡 <strong>1–2 sí</strong> → Buen punto de partida. Elijan 1 cosa para mejorar.<br />
+🔴 <strong>0 sí</strong> → Perfecto. Ahora saben por dónde empezar. 😊</p>
+<hr />
+<blockquote>
+<p>🌟 <strong>Última reflexión</strong>:<br />
+La cultura DevOps no es sobre ser perfectos.<br />
+Es sobre <strong>ser mejores que ayer</strong>…<br />
+y hacerlo <strong>juntos</strong>.</p>
+</blockquote>
+<p>🚀 ¿Listo para aplicarlo en tu próximo proyecto?       </p>
+</div>
+<div class="tabbed-block">
+<h1 id="los-5-pilares-de-devops-calms">🧱 Los 5 Pilares de DevOps: <strong>CALMS</strong></h1>
+<h2 id="culture-automation-lean-measurement-sharing">Culture, Automation, Lean, Measurement, Sharing</h2>
+<blockquote>
+<p><em>No son pasos… son principios que se refuerzan entre sí.</em></p>
+<p>💡 <strong>CALMS</strong> fue popularizado por la comunidad DevOps (especialmente en eventos <em>DevOpsDays</em>) como una forma sencilla de recordar los cimientos de una verdadera transformación DevOps.</p>
+</blockquote>
+<hr />
+<h2 id="que-significa-calms">🔤 ¿Qué significa CALMS?</h2>
+<table>
+<thead>
+<tr>
+<th>Letra</th>
+<th>Palabra (en inglés)</th>
+<th>Traducción</th>
+<th>¿De qué se trata?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>C</strong></td>
+<td><strong>Culture</strong></td>
+<td>Cultura</td>
+<td>La mentalidad y los valores del equipo: colaboración, confianza, responsabilidad compartida.</td>
+</tr>
+<tr>
+<td><strong>A</strong></td>
+<td><strong>Automation</strong></td>
+<td>Automatización</td>
+<td>Eliminar tareas manuales, repetitivas y propensas a error.</td>
+</tr>
+<tr>
+<td><strong>L</strong></td>
+<td><strong>Lean</strong></td>
+<td>Pensamiento Lean</td>
+<td>Maximizar el valor, minimizar el desperdicio. Enfocarse en lo que realmente importa al usuario.</td>
+</tr>
+<tr>
+<td><strong>M</strong></td>
+<td><strong>Measurement</strong></td>
+<td>Medición</td>
+<td>Usar datos (no corazonadas) para tomar decisiones y mejorar.</td>
+</tr>
+<tr>
+<td><strong>S</strong></td>
+<td><strong>Sharing</strong></td>
+<td>Compartir</td>
+<td>Conocimiento, herramientas, errores, éxitos… nada se guarda bajo llave.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🌟 <strong>Importante</strong>: No es una lista lineal.<br />
+Es un <strong>círculo virtuoso</strong>:<br />
+<strong>Culture</strong> permite <strong>Automation</strong> → que genera datos para <strong>Measurement</strong> → que guían mejoras <strong>Lean</strong> → cuyos aprendizajes se <strong>Share</strong> → fortaleciendo la <strong>Culture</strong>. 🔄</p>
+</blockquote>
+<hr />
+</div>
+<div class="tabbed-block">
+<h2 id="mttr-despliegues-por-dia-y-lead-time">MTTR, Despliegues por día y Lead Time</h2>
+<blockquote>
+<p><em>No se trata de medir por medir… sino de medir lo que te ayuda a mejorar.</em></p>
+<p>💡 Estas tres métricas son parte del famoso estudio <strong><a href="https://cloud.google.com/devops">DORA</a></strong> (<em>DevOps Research &amp; Assessment</em>), que analizó a miles de equipos para identificar qué prácticas realmente distinguen a los de <strong>alto desempeño</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="por-que-medir-breve-recordatorio">🎯 ¿Por qué medir? (Breve recordatorio)</h2>
+<ul>
+<li>❌ Medir para castigar → genera miedo, datos falsos, "jugar al sistema".  </li>
+<li>✅ Medir para <strong>aprender, mejorar y tomar decisiones con evidencia</strong> → genera confianza y progreso real.</li>
+</ul>
+<blockquote>
+<p>📌 <strong>Regla de oro</strong>:<br />
+Si una métrica no te ayuda a responder <strong><em>"¿qué podemos hacer mejor?"</em></strong>, no la midas.</p>
+</blockquote>
+<hr />
+<h2 id="las-3-metricas-esenciales-y-como-aplicarlas-como-estudiante">📉 Las 3 métricas esenciales (y cómo aplicarlas como estudiante)</h2>
+<h3 id="1-lead-time-for-changes">1. 🕒 <strong>Lead Time for Changes</strong></h3>
+<blockquote>
+<p><em>Tiempo que tarda un cambio de código desde que se escribe hasta que está en producción (o en un entorno funcional).</em></p>
+</blockquote>
+<h4 id="que-mide">¿Qué mide?</h4>
+<ul>
+<li>Velocidad + fluidez del proceso de entrega.  </li>
+<li>Cuán rápido obtienes <strong>feedback real</strong> sobre tu trabajo.</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="deployment-frequency">📦 Deployment Frequency</h1>
+<h2 id="con-que-frecuencia-entregas-valor">¿Con qué frecuencia entregas valor?</h2>
+<blockquote>
+<p>💡 <em>"La frecuencia de despliegue no mide cuán ocupado estás…<br />
+mide cuán </em>confiado<em> está tu equipo en su proceso."</em></p>
+</blockquote>
+<hr />
+<h2 id="que-es-deployment-frequency">🔍 ¿Qué es <strong>Deployment Frequency</strong>?</h2>
+<p>Es la <strong>cantidad de veces que entregas cambios funcionales a un entorno real</strong> (producción, prueba o demo) <strong>en un período determinado</strong>.</p>
+<ul>
+<li>✅ <strong>Cambio funcional</strong> = algo que un usuario (o profesor) puede <em>ver, tocar o usar</em>.<br />
+  (Ej: login, listado de productos, formulario de contacto).  </li>
+<li>❌ <strong>No cuenta</strong> como despliegue: subir código sin probar, hacer <code>git push</code> a una rama de desarrollo, corregir un comentario.</li>
+</ul>
+<hr />
+<h2 id="niveles-de-desempeno-segun-el-estudio-dora">📊 Niveles de desempeño (según el estudio <a href="https://cloud.google.com/devops">DORA</a>)</h2>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Frecuencia</th>
+<th>¿Qué significa en la práctica?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 <strong>Alto desempeño</strong></td>
+<td><strong>Varios por día</strong></td>
+<td>Automatización total: cada <code>git push</code> a <code>main</code> → se prueba y despliega solo. Alta confianza.</td>
+</tr>
+<tr>
+<td>🟡 <strong>Medio</strong></td>
+<td><strong>Semanal</strong></td>
+<td>Entregas planificadas. Requiere algo de coordinación manual, pero es predecible.</td>
+</tr>
+<tr>
+<td>🟠 <strong>Bajo</strong></td>
+<td><strong>Mensual</strong></td>
+<td>Solo al final de sprints/lapsos largos. Alto riesgo de integración fallida.</td>
+</tr>
+<tr>
+<td>🔴 <strong>Muy bajo</strong></td>
+<td><strong>Menos de una vez por proyecto</strong></td>
+<td>Todo se integra el día de la presentación → "noche de terror".</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ejemplos-reales-en-entornos-academicos">🎓 Ejemplos reales en entornos académicos</h2>
+<h3 id="caso-comun-bajo-desempeno">❌ Caso común (bajo desempeño)</h3>
+<blockquote>
+<p><em>"Empezamos el proyecto el lunes.<br />
+Cada quien hace su parte en su laptop.<br />
+El viernes de la última semana, juntamos todo…<br />
+y descubrimos que no compila, no conecta a la DB y faltan dependencias.<br />
+→ 1 despliegue: el día de la entrega."</em>  </p>
+</blockquote>
+<p><strong>Riesgos</strong>:<br />
+- Estrés extremo<br />
+- Calidad baja<br />
+- Poca retroalimentación del profesor (solo ve el producto final)</p>
+<hr />
+<h3 id="caso-devops-medio-alto-desempeno">✅ Caso DevOps (medio → alto desempeño)</h3>
+<blockquote>
+<p><em>"Semana 1:<br />
+- <code>v0.1</code>: App levanta con Docker (<code>docker-compose up</code>) → entrega al profesor para feedback inicial.<br />
+Semana 2:<br />
+- <code>v0.2</code>: Login funcional (aunque sin DB persistente).<br />
+Semana 3:<br />
+- <code>v0.3</code>: Listado de datos + conexión a PostgreSQL (con volumen).<br />
+→ 3 despliegues funcionales en 3 semanas."</em>  </p>
+</blockquote>
+<p><strong>Ventajas</strong>:<br />
+- El profesor ve progreso real → da mejor feedback<br />
+- Los errores se detectan temprano<br />
+- El equipo gana confianza y reduce el pánico final</p>
+<hr />
+<h2 id="como-medirlo-facil-y-sin-herramientas-complejas">🛠️ Cómo medirlo (fácil y sin herramientas complejas)</h2>
+<h3 id="opcion-1-manual-ideal-para-proyectos-universitarios">Opción 1: Manual (ideal para proyectos universitarios)</h3>
+<ol>
+<li>Crea un archivo <code>DEVLOG.md</code> en tu repositorio.</li>
+<li>Cada vez que entregues una versión <strong>funcional</strong>, anota:
+   ```md
+   ### 📦 Despliegue #1 — 2025-04-05</li>
+<li><strong>Versión</strong>: v0.1</li>
+<li><strong>Funcionalidad</strong>: App levanta con <code>docker-compose up</code></li>
+<li><strong>Entorno</strong>: Local + demo en Render (https://mi-app.onrender.com)</li>
+<li><strong>Feedback recibido</strong>: "Bien el setup, falta login"    </li>
+</ol>
+<h2 id="desglose-detallado"><strong>Desglose detallado</strong></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:5"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><input id="__tabbed_3_5" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">1. <strong>C — Culture (Cultura)</strong></label><label for="__tabbed_3_2">2. <strong>A — Automation (Automatización)</strong></label><label for="__tabbed_3_3">3. <strong>L — Lean (Pensamiento Lean)</strong>  </label><label for="__tabbed_3_4"> 4. <strong>M — Measurement (Medición)</strong></label><label for="__tabbed_3_5"> 5.<strong>S — Sharing (Compartir)</strong>  </label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<blockquote>
+<p><em>"La base de todo. Sin cultura, lo demás se cae."</em></p>
+</blockquote>
+<p>🔹 <strong>En qué consiste</strong>:<br />
+- Romper silos: desarrollo, operaciones, QA, diseño → un solo equipo con un objetivo común.<br />
+- Psicología de la seguridad: se puede hablar de errores <strong>sin miedo a ser castigado</strong>.<br />
+- Mentalidad de servicio: "¿Cómo ayudo a que <em>el producto</em> triunfe?", no "¿Cómo cumplo mi tarea?".</p>
+<p>🔸 <strong>Ejemplo estudiantil</strong>:  </p>
+<blockquote>
+<p>En tu grupo, en vez de:<br />
+❌ <em>"Yo hice mi parte, si no corre es problema de X"</em><br />
+Se dice:<br />
+✅ <em>"Vamos a probar juntos antes de entregar. ¿Qué necesitas de mí para que todo funcione?"</em></p>
+</blockquote>
+<hr />
+</div>
+<div class="tabbed-block">
+<blockquote>
+<p><em>"Automatiza todo lo que hagas más de dos veces."</em><br />
+— Proverbio DevOps</p>
+</blockquote>
+<p>🔹 <strong>En qué consiste</strong>:<br />
+- Automatizar: construcción, pruebas, despliegue, infraestructura, monitoreo.<br />
+- Meta: que un cambio de código llegue a producción con <strong>un clic (o cero clics)</strong>.<br />
+- No es “hacer más rápido lo mismo”: es <strong>hacer lo correcto de forma repetible</strong>.</p>
+<p>🔸 <strong>Ejemplo</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tarea manual</th>
+<th>Automatizada con DevOps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instalar Python, Flask, Redis en cada laptop</td>
+<td>✅ <code>docker-compose up</code> → todo listo en 20 segundos</td>
+</tr>
+<tr>
+<td>Probar manualmente todas las rutas de la API</td>
+<td>✅ Script de pruebas con <code>pytest</code> que corre en cada <code>git push</code></td>
+</tr>
+<tr>
+<td>Subir archivos por FTP al servidor del profesor</td>
+<td>✅ GitHub Actions despliega automáticamente a un entorno en la nube</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🐳 <strong>Docker es tu primer paso en Automation</strong> —¡no el último!</p>
+</blockquote>
+<hr />
+</div>
+<div class="tabbed-block">
+<blockquote>
+<p><em>"No se trata de hacer más… sino de hacer </em>menos, pero mejor<em>."</em></p>
+</blockquote>
+<p>🔹 <strong>En qué consiste</strong> (basado en el <em>Lean Manufacturing</em> de Toyota):<br />
+- <strong>Eliminar desperdicios</strong>: código innecesario, reuniones sin agenda, features que nadie usa, esperas.<br />
+- <strong>Flujo continuo</strong>: pequeños cambios, entregas frecuentes, feedback rápido.<br />
+- <strong>Pull, no push</strong>: construir solo lo que el usuario realmente necesita <em>ahora</em>.</p>
+<p>🔸 <strong>Ejemplo</strong>:  </p>
+<blockquote>
+<p>En vez de:<br />
+❌ <em>"Vamos a hacer un login con OAuth, roles, perfil, historial… pero solo tenemos 3 semanas"</em><br />
+Se hace:<br />
+✅ <em>"Versión 1: login con usuario/clave (almacenado en memoria). En la v2, persistimos y añadimos roles."</em><br />
+→ Entregas algo <strong>funcional</strong> rápido → validas con el profesor → iteras.</p>
+</blockquote>
+<p>📌 <strong>Desperdicios comunes en proyectos universitarios</strong>:<br />
+- ⏳ Esperar a que "todo esté perfecto" para probar.<br />
+- 🗃️ Guardar código solo al final ("ya lo subo después").<br />
+- 🧩 Hacer integración el último día.</p>
+<hr />
+</div>
+<div class="tabbed-block">
+<blockquote>
+<p><em>"Lo que no se mide, no se mejora."</em><br />
+— Peter Drucker (y luego, todos los equipos DevOps)</p>
+</blockquote>
+<p>🔹 <strong>En qué consiste</strong>:<br />
+- Definir métricas <strong>útiles</strong>, no solo "volumen".<br />
+- Usar datos para: detectar cuellos de botella, probar hipótesis, demostrar progreso.<br />
+- Evitar métricas punitivas (ej: líneas de código = productividad).</p>
+<p>🔸 <strong>Métricas clave (adaptadas para estudiantes)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Área</th>
+<th>Métrica útil</th>
+<th>¿Qué te dice?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flujo</strong></td>
+<td>Tiempo desde <code>git commit</code> → demo funcional</td>
+<td>¿Cuán rápido validan ideas?</td>
+</tr>
+<tr>
+<td><strong>Calidad</strong></td>
+<td>% de pruebas que pasan en CI</td>
+<td>¿Confían en su código antes de entregar?</td>
+</tr>
+<tr>
+<td><strong>Colaboración</strong></td>
+<td>Cantidad de <em>commits</em> por integrante (balance)</td>
+<td>¿Hay un solo "héroe"? ¿O es trabajo compartido?</td>
+</tr>
+<tr>
+<td><strong>Aprendizaje</strong></td>
+<td>Nº de mejoras aplicadas tras una retrospectiva</td>
+<td>¿Aprenden de la experiencia?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ No necesitas dashboards complejos.<br />
+Un <code>README.md</code> con: <em>"Esta semana redujimos el tiempo de setup de 30 min → 2 min con Docker"</em> ya es <strong>medición con propósito</strong>.</p>
+</blockquote>
+<hr />
+</div>
+<div class="tabbed-block">
+<blockquote>
+<p><em>"El conocimiento atesorado es conocimiento perdido."</em></p>
+</blockquote>
+<p>🔹 <strong>En qué consiste</strong>:<br />
+- Compartir: código, configuraciones, errores, lecciones aprendidas.<br />
+- Documentar como acto de empatía ("¿qué necesitaría yo si llegara nuevo?").<br />
+- Celebrar públicamente los aprendizajes, no solo los éxitos.</p>
+<p>🔸 <strong>Ejemplo</strong></p>
+<table>
+<thead>
+<tr>
+<th>Acción</th>
+<th>Impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ Subir el proyecto a GitHub (público o con invitados)</td>
+<td>→ El profesor puede ver progreso, no solo el ZIP final</td>
+</tr>
+<tr>
+<td>✅ Incluir un <code>DEVLOG.md</code>: <em>"Día 3: intentamos X, falló por Y, solución: Z"</em></td>
+<td>→ Muestra pensamiento crítico (¡y salva al siguiente grupo!)</td>
+</tr>
+<tr>
+<td>✅ Grabar un video de 3 min mostrando cómo ejecutar la app</td>
+<td>→ Empatía + comunicación efectiva</td>
+</tr>
+<tr>
+<td>✅ Dar una mini-charla al grupo: <em>"Cómo resolví el problema con la base de datos"</em></td>
+<td>→ Refuerza tu aprendizaje y ayuda a otros</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<blockquote>
+<p>🌐 En la comunidad DevOps, compartir no es opcional: es <strong>parte del trabajo</strong>.</p>
+</blockquote>
+<h2 id="el-ciclo-virtuoso-de-calms">🔄 El ciclo virtuoso de CALMS</h2>
+<pre class="mermaid"><code>        graph LR
+        C[Culture] --&gt; A[Automation]
+        A --&gt; M[Measurement]
+        M --&gt; L[Lean]
+        L --&gt; S[Sharing]
+        S --&gt; C</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../arquitectura/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Arquitectura de Software">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Arquitectura de Software
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../docker/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Docker">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Docker
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Boris Salleg
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.sections", "content.tabs.link", "content.code.annotate", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
